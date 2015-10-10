@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="extension_menu_first">#990055</color>
+    <color name="extension_menu_second">#339955</color>
+    <color name="extension_menu_third">#F98900</color>
+
+</resources>
