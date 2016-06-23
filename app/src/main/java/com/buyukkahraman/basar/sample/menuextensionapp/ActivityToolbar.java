@@ -38,20 +38,10 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.menu_first:
-                if(menuExtension.getMenuId() == R.menu.extension_menu_first){
-                    menuExtension.hide(true);
-                } else {
-                    menuExtension.setMenu(R.menu.extension_menu_first,getResources().getColor(R.color.extension_menu_first));
-                    menuExtension.show();
-                }
+                menuExtension.menuShowHideToggle(R.menu.extension_menu_first,getResources().getColor(R.color.extension_menu_first));
                 break;
             case R.id.menu_second:
-                if(menuExtension.getMenuId() == R.menu.extension_menu_second){
-                    menuExtension.hide(true);
-                } else {
-                    menuExtension.setMenu(R.menu.extension_menu_second,getResources().getColor(R.color.extension_menu_second));
-                    menuExtension.show();
-                }
+                menuExtension.menuShowHideToggle(R.menu.extension_menu_second,getResources().getColor(R.color.extension_menu_second));
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -61,8 +51,7 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
     public void onMenuExtensionItemSelected(MenuItem menuItem) {
 
         if(menuItem.getItemId()==R.id.extension_menu_second_submenu){
-            menuExtension.setMenu(R.menu.extension_menu_third,getResources().getColor(R.color.extension_menu_third));
-            menuExtension.show();
+            menuExtension.menuShowHideToggle(R.menu.extension_menu_third,getResources().getColor(R.color.extension_menu_third));
         } else {
             Toast.makeText(this,"Clicked extension menu: "+menuItem.getTitle(),Toast.LENGTH_SHORT).show();
         }
