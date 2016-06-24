@@ -11,10 +11,6 @@ This library is compatible with API 16 and later versions of Android.
 Download
 -------------
 ```gradle
-repositories {
-    maven {url 'https://dl.bintray.com/naber/maven/'}
-}
-
 dependencies {
     compile 'com.bafoly.menu:menu-extension:1.0'
 }
