@@ -1,4 +1,4 @@
-package com.buyukkahraman.basar.lib.view.menuextension;
+package com.bafoly.widget.menu;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -101,10 +101,6 @@ public class MenuExtension extends LinearLayout {
         density = metrics.density;
     }
 
-    public Activity getActivity() {
-        return activity;
-    }
-
     public void setActivity(Activity activity) {
         this.activity = activity;
         try {
@@ -161,7 +157,7 @@ public class MenuExtension extends LinearLayout {
         buttonPerRow = menu.size();
         buttonWidth = screenWidth/buttonPerRow;
 
-        rowCount = 1; // there must be at least one row.
+        rowCount = 1;
 
         if(buttonWidth < (MINIMUM_BUTTON_WIDTH*density)){
             buttonWidth = (int)(MINIMUM_BUTTON_WIDTH*density);

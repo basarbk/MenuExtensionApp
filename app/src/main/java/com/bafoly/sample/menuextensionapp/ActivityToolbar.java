@@ -1,17 +1,19 @@
-package com.buyukkahraman.basar.sample.menuextensionapp;
+package com.bafoly.sample.menuextensionapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.buyukkahraman.basar.lib.view.menuextension.MenuExtension;
+import com.bafoly.widget.menu.MenuExtension;
 
 public class ActivityToolbar extends AppCompatActivity  implements MenuExtension.MenuExtensionListener {
 
     MenuExtension menuExtension;
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
         menuExtension = (MenuExtension) findViewById(R.id.menuExtension);
         menuExtension.setActivity(this);
         menuExtension.setToolbar(toolbar, getResources().getColor(R.color.colorPrimary));
+
+        textView = (TextView) findViewById(R.id.text);
 
     }
 
@@ -53,7 +57,7 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
         if(menuItem.getItemId()==R.id.extension_menu_second_submenu){
             menuExtension.menuShowHideToggle(R.menu.extension_menu_third,getResources().getColor(R.color.extension_menu_third));
         } else {
-            Toast.makeText(this,"Clicked extension menu: "+menuItem.getTitle(),Toast.LENGTH_SHORT).show();
+            textView.setText("Clicked : "+menuItem.getTitle());
         }
 
     }

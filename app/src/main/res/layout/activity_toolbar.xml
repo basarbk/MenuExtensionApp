@@ -19,13 +19,15 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <TextView android:text="Hello World!"
+        <TextView
+            android:id="@+id/text"
+            android:text=".. Click the menu on toolbar .."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
 
 
-        <com.buyukkahraman.basar.lib.view.menuextension.MenuExtension
+        <com.bafoly.widget.menu.MenuExtension
             android:id="@+id/menuExtension"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
