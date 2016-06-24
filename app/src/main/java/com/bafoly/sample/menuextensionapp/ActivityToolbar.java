@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bafoly.widget.menu.MenuExtension;
 
-public class ActivityToolbar extends AppCompatActivity  implements MenuExtension.MenuExtensionListener {
+public class ActivityToolbar extends AppCompatActivity {
 
     MenuExtension menuExtension;
 
@@ -25,8 +25,17 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         menuExtension = (MenuExtension) findViewById(R.id.menuExtension);
-        menuExtension.setActivity(this);
         menuExtension.setToolbar(toolbar, getResources().getColor(R.color.colorPrimary));
+        menuExtension.setMenuExtensionListener(new MenuExtension.MenuExtensionListener() {
+            @Override
+            public void onMenuExtensionItemSelected(MenuItem menuItem) {
+                if(menuItem.getItemId()==R.id.extension_menu_second_submenu){
+                    menuExtension.menuShowHideToggle(R.menu.extension_menu_third,getResources().getColor(R.color.extension_menu_third));
+                } else {
+                    textView.setText("Clicked : "+menuItem.getTitle());
+                }
+            }
+        });
 
         textView = (TextView) findViewById(R.id.text);
 
@@ -49,16 +58,5 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onMenuExtensionItemSelected(MenuItem menuItem) {
-
-        if(menuItem.getItemId()==R.id.extension_menu_second_submenu){
-            menuExtension.menuShowHideToggle(R.menu.extension_menu_third,getResources().getColor(R.color.extension_menu_third));
-        } else {
-            textView.setText("Clicked : "+menuItem.getTitle());
-        }
-
     }
 }

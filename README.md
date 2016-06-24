@@ -12,13 +12,13 @@ Download
 -------------
 ```gradle
 dependencies {
-    compile 'com.bafoly.menu:menu-extension:1.0'
+    compile 'com.bafoly.menu:menu-extension:1.0.1'
 }
 ```
 
 Usage
 -------------
-The library is aiming to expand the size of existing Toolbar, so in your activity layout XML, position the MenuExtension right below to the toolbar. An example layout would be as follows.
+The library is for increasing the size of existing Toolbar area, so in your activity layout XML, position the MenuExtension right below to the toolbar. An example layout would be as follows.
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,7 +43,7 @@ Create menu xml's for each extension menu.
 
 Implementation of Activity is
 ```java
-public class ActivityToolbar extends AppCompatActivity  implements MenuExtension.MenuExtensionListener {
+public class ActivityToolbar extends AppCompatActivity {
 
     MenuExtension menuExtension;
 
@@ -57,10 +57,22 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         menuExtension = (MenuExtension) findViewById(R.id.menuExtension);
-        // set this Activity for click callbacks
-        menuExtension.setActivity(this);
+        
         // set the toolbar with current toolbar color
         menuExtension.setToolbar(toolbar, getResources().getColor(R.color.colorPrimary));
+        
+        // set the click callback
+        menuExtension.setMenuExtensionListener(new MenuExtension.MenuExtensionListener() {
+            @Override
+            public void onMenuExtensionItemSelected(MenuItem menuItem) {
+                if(menuItem.getItemId()==R.id.extension_menu_second_submenu){
+                    menuExtension.menuShowHideToggle(R.menu.extension_menu_third,getResources().getColor(R.color.extension_menu_third));
+                } else {
+                    textView.setText("Clicked : "+menuItem.getTitle());
+                }
+            }
+        });
+        
     }
 
     @Override
@@ -74,15 +86,6 @@ public class ActivityToolbar extends AppCompatActivity  implements MenuExtension
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onMenuExtensionItemSelected(MenuItem menuItem) {
-        if(menuItem.getItemId()==R.id.extension_menu_second_submenu){
-            menuExtension.menuShowHideToggle(R.menu.extension_menu_third, Color.YELLOW);
-        } else {
-            textView.setText("Clicked : "+menuItem.getTitle());
-        }
     }
 ```
 Demo Application

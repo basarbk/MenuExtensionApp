@@ -2,7 +2,6 @@ package com.bafoly.widget.menu;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +11,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +32,7 @@ public class MenuExtension extends LinearLayout {
 
     LayoutInflater layoutInflater;
 
-    Activity activity;
+    MenuInflater menuInflater;
 
     MenuExtensionListener listener;
 
@@ -99,17 +99,13 @@ public class MenuExtension extends LinearLayout {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
         density = metrics.density;
+
+        this.layoutInflater = LayoutInflater.from(context);
+        this.menuInflater = new MenuInflater(context);
     }
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-        try {
-            this.listener = (MenuExtensionListener)activity;
-        }
-        catch (final ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement MenuExtensionListener");
-        }
-        this.layoutInflater = activity.getLayoutInflater();
+    public void setMenuExtensionListener(MenuExtensionListener menuExtensionListener){
+        this.listener = menuExtensionListener;
     }
 
     public void setToolbar(Toolbar toolbar, int toolbarDefaultColor){
@@ -124,7 +120,7 @@ public class MenuExtension extends LinearLayout {
         } else {
             PopupMenu popupMenu = new PopupMenu(context, null);
             Menu menu = popupMenu.getMenu();
-            activity.getMenuInflater().inflate(menuId, menu);
+            this.menuInflater.inflate(menuId, menu);
             this.menu = menu;
 
             if(this.menuId!=-1){
