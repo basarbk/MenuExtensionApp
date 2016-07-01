@@ -41,7 +41,13 @@ The library is for increasing the size of existing Toolbar area, so in your acti
 
 Create menu xml's for each extension menu.
 
-Implementation of Activity is
+Then call menuShowHideToggle method with menu.xml with background color.
+```java
+menuExtension.menuShowHideToggle(R.menu.my_extension_menu, Color.RED);
+```
+
+Implementation of Activity is as follows.
+
 ```java
 public class ActivityToolbar extends AppCompatActivity {
 
